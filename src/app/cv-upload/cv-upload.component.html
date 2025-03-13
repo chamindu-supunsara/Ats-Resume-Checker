@@ -1,0 +1,10 @@
+<div class="upload-container">
+    <input type="file" (change)="onFileSelected($event)" accept=".pdf,.docx">
+    <p *ngIf="fileName">Uploaded: {{ fileName() }}</p>
+    
+    <p *ngIf="extractedText">Extracted Text Preview:</p>
+    <pre>{{ extractedText() | slice:0:100 }}...</pre>
+  
+    <button (click)="compareWithJobDescription()" *ngIf="extractedText">Check ATS Score</button>
+    <p *ngIf="similarityScore">Match Score: {{ similarityScore().toFixed(2) }}%</p>
+</div>

@@ -1,0 +1,11 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px; // Adjust spacing as needed
+}
+
+.bold-text {
+  font-weight: bold;
+  font-size: 22px; // Adjust the font size as needed
+}
