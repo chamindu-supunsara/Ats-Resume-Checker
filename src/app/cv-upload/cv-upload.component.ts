@@ -1,25 +1,31 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
 import mammoth from 'mammoth';
 import * as use from '@tensorflow-models/universal-sentence-encoder';
 import * as tf from '@tensorflow/tfjs';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cv-upload',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './cv-upload.component.html',
   styleUrl: './cv-upload.component.scss'
 })
-export class CvUploadComponent {
+export class CvUploadComponent implements OnInit {
   extractedText = signal('');
   fileName = signal('');
   jobDescription = signal('We are looking for a software engineer with 3+ years of experience in Angular and Node.js');
   similarityScore = signal(0);
+  modelPromise = use.load();
 
   constructor() {
     (pdfjsLib as any).GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.mjs`;
+  }
+
+  ngOnInit() {
+    
   }
 
   async onFileSelected(event: any) {
@@ -41,13 +47,13 @@ export class CvUploadComponent {
   async compareWithJobDescription() {
     if (!this.extractedText()) return;
 
-    await tf.setBackend('webgl');
-    const model = await use.load();
+    await tf.setBackend('webgl');  
+    const model = await this.modelPromise; // Use cached model
+
     const embeddings = await model.embed([this.extractedText(), this.jobDescription()]);
-  
     const [cvVector, jdVector] = embeddings.arraySync();
-    const similarityScore = this.cosineSimilarity(cvVector, jdVector) * 100;
-    this.similarityScore.set(similarityScore);
+    this.similarityScore.set(this.cosineSimilarity(cvVector, jdVector) * 100);
+    
     embeddings.dispose();
   }
 
