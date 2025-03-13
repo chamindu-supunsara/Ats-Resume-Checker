@@ -1,10 +1,13 @@
 <div class="upload-container">
+    <input type="text" [(ngModel)]="jobDescription" placeholder="Enter Job Description">
+    <p *ngIf="jobDescription" style="font-weight: bold;">Job Description: {{ jobDescription() }}</p>
+
     <input type="file" (change)="onFileSelected($event)" accept=".pdf,.docx">
-    <p *ngIf="fileName">Uploaded: {{ fileName() }}</p>
+    <p *ngIf="fileName">Attach: {{ fileName() }}</p>
     
-    <p *ngIf="extractedText">Extracted Text Preview:</p>
-    <pre>{{ extractedText() | slice:0:100 }}...</pre>
+    <p *ngIf="extractedText" style="font-weight: bold;">Extracted Text Preview:</p>
+    <pre style="white-space: pre-wrap; word-wrap: break-word;">{{ extractedText() | slice:0:4500 }}...</pre>
   
     <button (click)="compareWithJobDescription()" *ngIf="extractedText">Check ATS Score</button>
-    <p *ngIf="similarityScore">Match Score: {{ similarityScore().toFixed(2) }}%</p>
+    <p *ngIf="similarityScore" style="font-weight: bold;">Match Score: {{ similarityScore().toFixed(2) }}%</p>
 </div>
