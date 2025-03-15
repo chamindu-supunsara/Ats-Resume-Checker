@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CvUploadComponent } from "../cv-upload/cv-upload.component";
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,5 +10,18 @@ import { CvUploadComponent } from "../cv-upload/cv-upload.component";
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  
+  constructor(private titleService: Title, private metaService: Meta) {
+    this.setSEO();
+  }
+
+  private setSEO() {
+    this.titleService.setTitle('Free Ats Resume Checker | Free AI Resume Cv Score Tool');
+    
+    this.metaService.updateTag({ name: 'description', content: 'Analyze your resume with AI-powered ATS resume scoring. Optimize your CV for job applications and pass ATS filters with ease.' });
+    this.metaService.updateTag({ name: 'keywords', content: 'ats resume checker, ats resume scan, resume optimization, ats resume test, ats resume, CV checker, CV optimization, CV scan, CV test, CV score, CV analysis, CV keywords scan, CV keywords test, CV keywords score' });
+    this.metaService.updateTag({ property: 'og:title', content: 'Free Ats Resume Checker | Free AI Resume Cv Score Tool' });
+    this.metaService.updateTag({ property: 'og:description', content: 'Improve your resume with AI-powered ATS scoring. Get higher rankings for job applications!' });
+    this.metaService.updateTag({ property: 'og:image', content: 'https://ats-resumechecker.web.app/Cover.jpg' });
+    this.metaService.updateTag({ property: 'og:url', content: 'https://ats-resumechecker.web.app' });
+  }
 }
