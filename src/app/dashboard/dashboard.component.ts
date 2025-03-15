@@ -17,11 +17,11 @@ export class DashboardComponent {
   private setSEO() {
     this.titleService.setTitle('Free Ats Resume Checker | Free AI Resume Cv Score Tool');
     
-    this.metaService.updateTag({ name: 'description', content: 'Analyze your resume with AI-powered ATS resume scoring. Optimize your CV for job applications and pass ATS filters with ease.' });
+    this.metaService.updateTag({ name: 'description', content: 'Analyze your resume with AI-powered ATS resume scoring. Optimize your CV for job applications and pass ATS filters with ease. Free Ats Resume Checker' });
     this.metaService.updateTag({ name: 'keywords', content: 'ats resume checker, ats resume scan, resume optimization, ats resume test, ats resume, CV checker, CV optimization, CV scan, CV test, CV score, CV analysis, CV keywords scan, CV keywords test, CV keywords score' });
-    this.metaService.updateTag({ property: 'og:title', content: 'Free Ats Resume Checker | Free AI Resume Cv Score Tool' });
-    this.metaService.updateTag({ property: 'og:description', content: 'Improve your resume with AI-powered ATS scoring. Get higher rankings for job applications!' });
-    this.metaService.updateTag({ property: 'og:image', content: 'https://ats-resumechecker.web.app/Cover.jpg' });
-    this.metaService.updateTag({ property: 'og:url', content: 'https://ats-resumechecker.web.app' });
+    this.metaService.updateTag({ property: 'og:title', content: 'Free Ats Resume Checker Free AI Resume Cv Score Tool' });
+    this.metaService.updateTag({ property: 'og:description', content: 'Improve your resume with AI-powered ATS scoring. Get higher rankings for job applications! Free Ats Resume Checker' });
+    this.metaService.updateTag({ property: 'og:image', content: 'https://www.atschecker.site/Cover.jpg' });
+    this.metaService.updateTag({ property: 'og:url', content: 'https://www.atschecker.site' });
   }
 }
