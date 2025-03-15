@@ -6,7 +6,7 @@
     <p *ngIf="fileName">Attach: {{ fileName() }}</p>
     
     <p *ngIf="extractedText" style="font-weight: bold;">Extracted Text Preview:</p>
-    <pre style="white-space: pre-wrap; word-wrap: break-word;">{{ extractedText() | slice:0:4500 }}...</pre>
+    <pre style="white-space: pre-wrap; word-wrap: break-word;">{{ extractedText() | slice:0:2500 }}...</pre>
   
     <button (click)="compareWithJobDescription()" *ngIf="extractedText">Check ATS Score</button>
     <p *ngIf="similarityScore" style="font-weight: bold;">Match Score: {{ similarityScore().toFixed(2) }}%</p>
