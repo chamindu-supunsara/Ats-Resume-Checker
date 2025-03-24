@@ -5,28 +5,33 @@ import * as use from '@tensorflow-models/universal-sentence-encoder';
 import * as tf from '@tensorflow/tfjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { PanelModule } from 'primeng/panel';
 
 @Component({
   selector: 'app-cv-upload',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PanelModule],
+  providers: [MessageService],
   templateUrl: './cv-upload.component.html',
-  styleUrl: './cv-upload.component.scss'
+  styleUrl: './cv-upload.component.scss',
 })
 export class CvUploadComponent implements OnInit {
   extractedText = signal('');
   fileName = signal('');
-  jobDescription = signal('We are looking for a software engineer with 3+ years of experience in Angular and Node.js');
+  jobDescription = signal(
+    'We are looking for a software engineer with 3+ years of experience in Angular and Node.js'
+  );
   similarityScore = signal(0);
   modelPromise = use.load();
 
   constructor() {
-    (pdfjsLib as any).GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.mjs`;
+    (
+      pdfjsLib as any
+    ).GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.mjs`;
   }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   async onFileSelected(event: any) {
     const file = event.target.files[0];
@@ -47,13 +52,16 @@ export class CvUploadComponent implements OnInit {
   async compareWithJobDescription() {
     if (!this.extractedText()) return;
 
-    await tf.setBackend('webgl');  
+    await tf.setBackend('webgl');
     const model = await this.modelPromise; // Use cached model
 
-    const embeddings = await model.embed([this.extractedText(), this.jobDescription()]);
+    const embeddings = await model.embed([
+      this.extractedText(),
+      this.jobDescription(),
+    ]);
     const [cvVector, jdVector] = embeddings.arraySync();
     this.similarityScore.set(this.cosineSimilarity(cvVector, jdVector) * 100);
-    
+
     embeddings.dispose();
   }
 
@@ -80,7 +88,9 @@ export class CvUploadComponent implements OnInit {
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = async () => {
-        const result = await mammoth.extractRawText({ arrayBuffer: reader.result as ArrayBuffer });
+        const result = await mammoth.extractRawText({
+          arrayBuffer: reader.result as ArrayBuffer,
+        });
         resolve(result.value);
       };
       reader.readAsArrayBuffer(file);
@@ -88,10 +98,16 @@ export class CvUploadComponent implements OnInit {
   }
 
   cosineSimilarity(a: number[], b: number[]): number {
-    const dotProduct = a.map((val, i) => val * b[i]).reduce((sum, num) => sum + num, 0);
-    const magnitudeA = Math.sqrt(a.map((val) => val * val).reduce((sum, num) => sum + num, 0));
-    const magnitudeB = Math.sqrt(b.map((val) => val * val).reduce((sum, num) => sum + num, 0));
+    const dotProduct = a
+      .map((val, i) => val * b[i])
+      .reduce((sum, num) => sum + num, 0);
+    const magnitudeA = Math.sqrt(
+      a.map((val) => val * val).reduce((sum, num) => sum + num, 0)
+    );
+    const magnitudeB = Math.sqrt(
+      b.map((val) => val * val).reduce((sum, num) => sum + num, 0)
+    );
 
     return dotProduct / (magnitudeA * magnitudeB);
-  }  
+  }
 }

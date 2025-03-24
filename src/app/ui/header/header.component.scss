@@ -2,10 +2,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px; // Adjust spacing as needed
+  width: 100%;
+  padding: 0 5rem;
+  height: 4rem;
 }
 
 .bold-text {
-  font-weight: bold;
-  font-size: 22px; // Adjust the font size as needed
+  font-weight: 500;
+  font-size: 20px;
+  margin-right: auto;
+  margin-left: 1rem;
+}
+
+.right-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+p-divider {
+  height: 1px !important;
+  margin: 0 0 0.5rem 0 !important;
+}
+
+@keyframes dimLightAnimation {
+  0%, 100% {
+    opacity: 0.3; //Dim (half opacity)
+  }
+  50% {
+    opacity: 1; //Full opacity (light)
+  }
+}
+
+.pi-inout {
+  animation: 
+    dimLightAnimation 3s ease-in-out infinite;
 }

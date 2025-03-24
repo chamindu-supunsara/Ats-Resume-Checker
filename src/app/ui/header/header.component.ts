@@ -1,10 +1,11 @@
 import { Component, computed, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [ButtonModule, DividerModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
