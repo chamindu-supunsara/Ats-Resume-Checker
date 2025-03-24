@@ -13,3 +13,17 @@
   font-size: 2.5rem;
   color: var(--p-zinc-500);
 }
+
+@keyframes dimLightAnimation {
+  0%,
+  100% {
+    opacity: 0.3; //Dim (half opacity)
+  }
+  50% {
+    opacity: 1; //Full opacity (light)
+  }
+}
+
+.icon-container {
+  animation: dimLightAnimation 3s ease-in-out infinite;
+}

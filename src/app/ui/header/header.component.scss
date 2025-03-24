@@ -26,7 +26,8 @@ p-divider {
 }
 
 @keyframes dimLightAnimation {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3; //Dim (half opacity)
   }
   50% {
@@ -35,6 +36,5 @@ p-divider {
 }
 
 .pi-inout {
-  animation: 
-    dimLightAnimation 3s ease-in-out infinite;
+  animation: dimLightAnimation 3s ease-in-out infinite;
 }

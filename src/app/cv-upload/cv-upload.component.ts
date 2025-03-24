@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { PanelModule } from 'primeng/panel';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-cv-upload',
   standalone: true,
-  imports: [CommonModule, FormsModule, PanelModule],
+  imports: [CommonModule, FormsModule, PanelModule, ButtonModule],
   providers: [MessageService],
   templateUrl: './cv-upload.component.html',
   styleUrl: './cv-upload.component.scss',
