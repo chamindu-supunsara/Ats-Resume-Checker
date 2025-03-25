@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { CvUploadComponent } from "../cv-upload/cv-upload.component";
 import { Meta, Title } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
+import { DividerModule } from 'primeng/divider';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CvUploadComponent, ButtonModule],
+  imports: [CvUploadComponent, ButtonModule, DividerModule, CardModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

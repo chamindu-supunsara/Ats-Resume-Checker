@@ -8,11 +8,13 @@ import { FormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabel } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-cv-upload',
   standalone: true,
-  imports: [CommonModule, FormsModule, PanelModule, ButtonModule],
+  imports: [CommonModule, FormsModule, PanelModule, ButtonModule, InputTextModule, FloatLabel, FormsModule],
   providers: [MessageService],
   templateUrl: './cv-upload.component.html',
   styleUrl: './cv-upload.component.scss',
@@ -20,9 +22,7 @@ import { ButtonModule } from 'primeng/button';
 export class CvUploadComponent implements OnInit {
   extractedText = signal('');
   fileName = signal('');
-  jobDescription = signal(
-    'We are looking for a software engineer with 3+ years of experience in Angular and Node.js'
-  );
+  jobDescription = signal('');
   similarityScore = signal(0);
   modelPromise = use.load();
 
