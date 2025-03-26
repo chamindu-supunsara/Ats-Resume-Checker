@@ -4,16 +4,17 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CvUploadComponent, ButtonModule, DividerModule, CardModule],
+  imports: [CvUploadComponent, ButtonModule, DividerModule, CardModule, NgxSpinnerModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  constructor(private titleService: Title, private metaService: Meta) {
+  constructor(private titleService: Title, private metaService: Meta, private spinner: NgxSpinnerService) {
     this.setSEO();
   }
 
@@ -26,5 +27,15 @@ export class DashboardComponent {
     this.metaService.updateTag({ property: 'og:description', content: 'Improve your resume with AI-powered ATS scoring. Get higher rankings for job applications! Free Ats Resume Checker' });
     this.metaService.updateTag({ property: 'og:image', content: 'https://atschecker.site/Cover.jpg' });
     this.metaService.updateTag({ property: 'og:url', content: 'https://atschecker.site' });
+  }
+
+  Analyze() {
+    document.body.style.overflow = 'hidden';
+    this.spinner.show('analyzeSpinner');
+    
+    setTimeout(() => {
+      this.spinner.hide('analyzeSpinner');
+      document.body.style.overflow = 'auto';
+    }, 5000);
   }
 }
