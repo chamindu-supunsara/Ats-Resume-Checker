@@ -17,16 +17,35 @@
         <label for="on_label">Job Description here - Example: Full Stack Software Engineer</label>
     </p-floatlabel>
 </div>
-
+<p-toast />
 <p-panel>
-    <div style="text-align: center;">
-        <div class="icon-container">
-            <i class="pi pi-cloud-upload"></i>
+    @if (uploadedFiles.length > 0) {
+        <div style="text-align: center;">
+            <div class="icon-container">
+                <i class="pi pi-file-check"></i>
+            </div>
+            <h2>{{ uploadedFiles[0].name }}</h2>
+            <p-button icon="pi pi-times" [rounded]="true" severity="danger" (onClick)="ClearFile()" [outlined]="true" />
         </div>
-        <h2>Drag & Drop your resume here</h2>
-        <p>or</p>
-        <p-button label="Browse Files" variant="outlined" severity="contrast" />
-        <p>Supported formats: PDF, DOCX, DOC (Max 10MB)</p>
-    </div>
+    } @else {
+        <div style="text-align: center;">
+            <div class="icon-container">
+                <i class="pi pi-cloud-upload"></i>
+            </div>
+            <h2>Drag & Drop your resume here</h2>
+            <p>or</p>
+            <!-- <p-button type="file" label="Browse Files" variant="outlined" severity="contrast" /> -->
+            <p-fileUpload 
+                mode="basic" 
+                name="demo[]" 
+                chooseIcon="pi pi-upload"
+                accept=".pdf,.docx,.doc" 
+                maxFileSize="30000000" 
+                [auto]="true"
+                chooseLabel="Attach File"
+                (onSelect)="onFileSelect($event)" />
+            <p>Supported formats: PDF, DOCX, DOC (Max 10MB)</p>
+        </div>
+    }
 </p-panel>
 

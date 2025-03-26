@@ -10,11 +10,14 @@ import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabel } from 'primeng/floatlabel';
+import { FileUpload, FileUploadEvent } from 'primeng/fileupload';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-cv-upload',
   standalone: true,
-  imports: [CommonModule, FormsModule, PanelModule, ButtonModule, InputTextModule, FloatLabel, FormsModule],
+  imports: [CommonModule, FormsModule, PanelModule, ButtonModule, InputTextModule, FloatLabel, FormsModule, FileUpload, HttpClientModule, ToastModule],
   providers: [MessageService],
   templateUrl: './cv-upload.component.html',
   styleUrl: './cv-upload.component.scss',
@@ -26,7 +29,7 @@ export class CvUploadComponent implements OnInit {
   similarityScore = signal(0);
   modelPromise = use.load();
 
-  constructor() {
+  constructor(private messageService: MessageService) {
     (
       pdfjsLib as any
     ).GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.mjs`;
@@ -110,5 +113,17 @@ export class CvUploadComponent implements OnInit {
     );
 
     return dotProduct / (magnitudeA * magnitudeB);
+  }
+
+  uploadedFiles: any[] = [];
+
+  onFileSelect(event: any) {
+    const file = event.files[0];
+    this.uploadedFiles.push(file);
+    console.log('Selected file:', file);
+  }
+
+  ClearFile() {
+    this.uploadedFiles = [];
   }
 }
