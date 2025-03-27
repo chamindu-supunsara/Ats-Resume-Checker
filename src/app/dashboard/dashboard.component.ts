@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CvUploadComponent } from "../cv-upload/cv-upload.component";
 import { Meta, Title } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
-import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { SummaryComponent } from '../summary/summary.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CvUploadComponent, ButtonModule, DividerModule, CardModule, NgxSpinnerModule],
+  imports: [CvUploadComponent, ButtonModule, DividerModule, CardModule, SummaryComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  constructor(private titleService: Title, private metaService: Meta, private spinner: NgxSpinnerService) {
+  isSummary = signal<boolean>(false);
+  similarityScore = signal<number | null>(null);
+
+  constructor(private titleService: Title, private metaService: Meta) {
     this.setSEO();
   }
 
@@ -29,13 +32,8 @@ export class DashboardComponent {
     this.metaService.updateTag({ property: 'og:url', content: 'https://atschecker.site' });
   }
 
-  Analyze() {
-    document.body.style.overflow = 'hidden';
-    this.spinner.show('analyzeSpinner');
-    
-    setTimeout(() => {
-      this.spinner.hide('analyzeSpinner');
-      document.body.style.overflow = 'auto';
-    }, 5000);
+  onSimilarityScore(score: number) {
+    this.similarityScore.set(score);
+    this.isSummary.set(true);
   }
 }

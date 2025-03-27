@@ -1,0 +1,15 @@
+<!-- <div class="summary-container">
+    <h2>ATS Compatibility Score</h2>
+    <p>Your resume scored <strong>{{ score()?.toFixed(0) ?? '0' }}%</strong> compatibility with the job description.</p>
+</div> -->
+
+<p-card [style]="{ width: '60rem', margin: '3rem 0 0 0' }">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-left: 2rem; margin-right: 2rem;">
+        <div>
+            <h1>Resume Analysis Results</h1>
+            <h2>Analyzed on {{ currentDate | date: 'longDate' }}</h2>
+        </div>
+        <p-knob [(ngModel)]="ScoreValue" [readonly]="true" />
+    </div>
+</p-card>
+

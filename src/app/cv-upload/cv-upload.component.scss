@@ -14,6 +14,14 @@
   color: var(--p-zinc-500);
 }
 
+.drop-area {
+  cursor: grabbing;
+  
+  @supports (-webkit-touch-callout: none) {
+    cursor: -webkit-grabbing;
+  }
+}
+
 @keyframes dimLightAnimation {
   0%,
   100% {

@@ -1,16 +1,6 @@
-<!-- <div class="upload-container">
-    <input type="text" [(ngModel)]="jobDescription" placeholder="Enter Job Description">
-    <p *ngIf="jobDescription" style="font-weight: bold;">Job Description: {{ jobDescription() }}</p>
+<!-- <button (click)="compareWithJobDescription()" *ngIf="extractedText">Check ATS Score</button>
+<p *ngIf="similarityScore" style="font-weight: bold;">Match Score: {{ similarityScore().toFixed(2) }}%</p> -->
 
-    <input type="file" (change)="onFileSelected($event)" accept=".pdf,.docx">
-    <p *ngIf="fileName">Attach: {{ fileName() }}</p>
-    
-    <p *ngIf="extractedText" style="font-weight: bold;">Extracted Text Preview:</p>
-    <pre style="white-space: pre-wrap; word-wrap: break-word;">{{ extractedText() | slice:0:2500 }}...</pre>
-  
-    <button (click)="compareWithJobDescription()" *ngIf="extractedText">Check ATS Score</button>
-    <p *ngIf="similarityScore" style="font-weight: bold;">Match Score: {{ similarityScore().toFixed(2) }}%</p>
-</div> -->
 <div style="margin-bottom: 2rem; width: 100%; justify-content: center;">
     <p-floatlabel variant="on">
         <input pInputText id="on_label" [(ngModel)]="jobDescription" autocomplete="off" pSize="large" style="width: 100%;" maxlength="80" />
@@ -24,11 +14,11 @@
             <div class="icon-container">
                 <i class="pi pi-file-check"></i>
             </div>
-            <h2>{{ uploadedFiles[0].name }}</h2>
+            <h2>{{ uploadedFiles }}</h2>
             <p-button icon="pi pi-times" [rounded]="true" severity="danger" (onClick)="ClearFile()" [outlined]="true" />
         </div>
     } @else {
-        <div style="text-align: center;">
+        <div style="text-align: center;" class="drop-area" (drop)="onFileDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
             <div class="icon-container">
                 <i class="pi pi-cloud-upload"></i>
             </div>
@@ -47,3 +37,14 @@
         </div>
     }
 </p-panel>
+<div style="display: flex; justify-content: center; margin-top: 2rem;">
+    <p-button 
+        label="Analyze Resume" 
+        [style]="{'font-size': '1.5rem', 'padding': '1rem 1.5rem'}" 
+        (onClick)="compareWithJobDescription()" 
+        icon="pi pi-sparkles" 
+        [raised]="true" 
+        size="large" 
+    />
+</div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 1)" size = "medium" color = "#fff" type = "line-scale-party" [fullScreen] = "true" name="analyzeSpinner"><p style="color: white" > ATS Magic in Progress: AI Analyzing Your Resume... </p></ngx-spinner>

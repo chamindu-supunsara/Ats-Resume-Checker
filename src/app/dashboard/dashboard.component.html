@@ -1,35 +1,38 @@
-<div class="header-container">
-    <h1>Get Hired Faster with Smart ATS Resume Analysis!</h1>
-    <h3>Attach your resume and get instant feedback on its ATS compatibility score</h3>
-
-    <app-cv-upload />
-    
-    <p-button label="Analyze Resume" [style]="{'margin-top': '1rem', 'font-size': '1.5rem', 'padding': '1rem 1.5rem' }" (onClick)="Analyze()" icon="pi pi-sparkles" [raised]="true" size="large" />
-
-    <div style="margin-top: 2rem; margin-bottom: 3rem; display: flex; align-items: center;">
-        <span class="pi pi-shield" style="font-weight: bold; margin-right: 0.5rem;"></span><h4 style="margin: 0 1.5rem 0 0;">100% Secure</h4>
-        <span class="pi pi-bolt" style="font-weight: bold; margin-right: 0.5rem;"></span><h4 style="margin: 0 1.5rem 0 0;">Instant Results</h4>
-        <span class="pi pi-eye-slash" style="font-weight: bold; margin-right: 0.5rem;"></span><h4 style="margin: 0;">Privacy Protected</h4>
+@if (this.isSummary()) {
+    <div class="header-container">
+        <app-summary [score]="similarityScore()" />
     </div>
-
-    <p-divider />
-
-    <div style="display: flex; gap: 4rem; margin-top: 3rem; margin-bottom: 4rem;">
-        <p-card [style]="{ width: '25rem' }">
-            <span class="pi pi-gauge" style="font-size: 1.5rem;"></span>
-            <h5 style="margin-top: 0.5rem;">Smart Analysis</h5>
-            <p>Advanced Al algorithms analyze your resume agalinst top ATS systems</p>
-        </p-card>
-        <p-card [style]="{ width: '25rem' }">
-            <span class="pi pi-list-check" style="font-size: 1.5rem;"></span>
-            <h5 style="margin-top: 0.5rem;">Format Check</h5>
-            <p>Ensure your resume format is optimized for ATS parsing</p>
-        </p-card>
-        <p-card [style]="{ width: '25rem' }">
-            <span class="pi pi-chart-bar" style="font-size: 1.5rem;"></span>
-            <h5 style="margin-top: 0.5rem;">Detailed Report</h5>
-            <p>Get comprehensive feedback with actionable improvement suggestlons</p>
-        </p-card>
-    </div>    
-</div>
-<ngx-spinner bdColor = "rgba(0, 0, 0, 1)" size = "medium" color = "#fff" type = "line-scale-party" [fullScreen] = "true" name="analyzeSpinner"><p style="color: white" > ATS Magic in Progress: AI Analyzing Your Resume... </p></ngx-spinner>
+} @else {
+    <div class="header-container">
+        <h1>Get Hired Faster with Smart ATS Resume Analysis!</h1>
+        <h3>Attach your resume and get instant feedback on its ATS compatibility score</h3>
+    
+        <app-cv-upload (similarityScoreEvent)="onSimilarityScore($event)" />
+    
+        <div style="margin-top: 2rem; margin-bottom: 3rem; display: flex; align-items: center;">
+            <span class="pi pi-shield" style="font-weight: bold; margin-right: 0.5rem;"></span><h4 style="margin: 0 1.5rem 0 0;">100% Secure</h4>
+            <span class="pi pi-bolt" style="font-weight: bold; margin-right: 0.5rem;"></span><h4 style="margin: 0 1.5rem 0 0;">Instant Results</h4>
+            <span class="pi pi-eye-slash" style="font-weight: bold; margin-right: 0.5rem;"></span><h4 style="margin: 0;">Privacy Protected</h4>
+        </div>
+    
+        <p-divider />
+    
+        <div style="display: flex; gap: 4rem; margin-top: 3rem; margin-bottom: 4rem;">
+            <p-card [style]="{ width: '25rem' }">
+                <span class="pi pi-gauge" style="font-size: 1.5rem;"></span>
+                <h5 style="margin-top: 0.5rem;">Smart Analysis</h5>
+                <p>Advanced Al algorithms analyze your resume agalinst top ATS systems</p>
+            </p-card>
+            <p-card [style]="{ width: '25rem' }">
+                <span class="pi pi-list-check" style="font-size: 1.5rem;"></span>
+                <h5 style="margin-top: 0.5rem;">Format Check</h5>
+                <p>Ensure your resume format is optimized for ATS parsing</p>
+            </p-card>
+            <p-card [style]="{ width: '25rem' }">
+                <span class="pi pi-chart-bar" style="font-size: 1.5rem;"></span>
+                <h5 style="margin-top: 0.5rem;">Detailed Report</h5>
+                <p>Get comprehensive feedback with actionable improvement suggestlons</p>
+            </p-card>
+        </div>    
+    </div>
+}
