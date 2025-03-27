@@ -61,4 +61,9 @@ export class HeaderComponent {
   }  
 
   buttonIcon = computed(() => (this.isDarkMode() ? 'pi pi-sun' : 'pi pi-moon'));
+
+  //Need to change feuature release
+  Reload() {
+    location.reload();
+  }
 }

@@ -1,15 +1,73 @@
-<!-- <div class="summary-container">
-    <h2>ATS Compatibility Score</h2>
-    <p>Your resume scored <strong>{{ score()?.toFixed(0) ?? '0' }}%</strong> compatibility with the job description.</p>
-</div> -->
-
-<p-card [style]="{ width: '60rem', margin: '3rem 0 0 0' }">
+<p-panel [style]="{ width: '60rem', margin: '3rem 0 0 0' }">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-left: 2rem; margin-right: 2rem;">
         <div>
             <h1>Resume Analysis Results</h1>
             <h2>Analyzed on {{ currentDate | date: 'longDate' }}</h2>
         </div>
-        <p-knob [(ngModel)]="ScoreValue" [readonly]="true" />
+        <p-knob [(ngModel)]="ScoreValue" [disabled]="true" [size]="200" />
     </div>
-</p-card>
+</p-panel>
+
+<div style="display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem;">
+    <p-panel header="Key Findings" [style]="{ width: '25rem' }">
+        <div class="m-0">
+            <div style="margin-bottom: 1rem;">
+                <i class="pi pi-times" style="color: var(--success-color); margin-right: 1rem;"></i> Strong keyword matching
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <i class="pi pi-check" style="color: var(--success-color); margin-right: 1rem;"></i> Good formatting structure
+            </div>
+            <div>
+                <i class="pi pi-check" style="color: var(--success-color); margin-right: 1rem;"></i> Missing key skills section
+            </div>
+        </div>
+    </p-panel>    
+
+    <p-panel header="Format Analysis" [style]="{ width: '34rem' }">
+        <div class="m-0" style="display: flex; justify-content: space-between;">
+            <!-- Column 1: Labels -->
+            <div style="display: flex; flex-direction: column; gap: 1rem; width: 30%;">
+                <div style="display: flex; align-items: center;">
+                    <span>Readability</span>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <span>Structure</span>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <span>Compatibility</span>
+                </div>
+            </div>
+    
+            <!-- Column 2: Progress Bars -->
+            <div style="display: flex; flex-direction: column; gap: 1rem; width: 66%;">
+                <div>
+                    <p-progressbar [value]="90" />
+                </div>
+                <div>
+                    <p-progressbar [value]="88" />
+                </div>
+                <div>
+                    <p-progressbar [value]="97" />
+                </div>
+            </div>
+        </div>
+    </p-panel>        
+    
+    
+</div>
+
+<p-panel header="Improvement Recommendations" [style]="{ width: '60rem', margin: '1rem 0 3rem 0' }">
+    <p-panel header="Add a Skills Section" [style]="{ width: '58rem' }">
+        <p class="m-0">
+            Include a dedicated skills section to highlight your technical and soft skills.
+        </p>
+    </p-panel>
+
+    <p-panel header="Quantity Achievements" [style]="{ width: '58rem', margin: '1rem 0 0 0' }">
+        <p class="m-0">
+            Add more measurable results and metrics to your experience section.
+        </p>
+    </p-panel>
+</p-panel>
+
 

@@ -174,14 +174,34 @@ export class CvUploadComponent {
     event.preventDefault();
     event.stopPropagation();
     (event.currentTarget as HTMLElement).classList.remove('dragover');
-
+  
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       const droppedFile = event.dataTransfer.files[0];
-
-      if (['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(droppedFile.type)) {
-        this.onFileSelect({ files: [droppedFile] });
+  
+      const allowedTypes = [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      ];
+  
+      const maxSizeInBytes = 3 * 1024 * 1024;
+  
+      if (allowedTypes.includes(droppedFile.type)) {
+        if (droppedFile.size <= maxSizeInBytes) {
+          this.onFileSelect({ files: [droppedFile] });
+        } else {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'File Too Large',
+            detail: 'File size exceeds the limit of 3 MB.'
+          });
+        }
       } else {
-        this.messageService.add({ severity: 'error', summary: 'Invalid File Type', detail: 'Please upload a PDF, DOC, or DOCX file.' });
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Invalid File Type',
+          detail: 'Please upload a PDF, DOC, or DOCX file.'
+        });
       }
     }
   }
