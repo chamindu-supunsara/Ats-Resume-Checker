@@ -1,15 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CvUploadComponent } from "../cv-upload/cv-upload.component";
 import { Meta, Title } from '@angular/platform-browser';
+import { ButtonModule } from 'primeng/button';
+import { DividerModule } from 'primeng/divider';
+import { CardModule } from 'primeng/card';
+import { SummaryComponent } from '../summary/summary.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CvUploadComponent],
+  imports: [CvUploadComponent, ButtonModule, DividerModule, CardModule, SummaryComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
+  isSummary = signal<boolean>(false);
+  similarityScore = signal<number | null>(null);
+
   constructor(private titleService: Title, private metaService: Meta) {
     this.setSEO();
   }
@@ -23,5 +30,10 @@ export class DashboardComponent {
     this.metaService.updateTag({ property: 'og:description', content: 'Improve your resume with AI-powered ATS scoring. Get higher rankings for job applications! Free Ats Resume Checker' });
     this.metaService.updateTag({ property: 'og:image', content: 'https://atschecker.site/Cover.jpg' });
     this.metaService.updateTag({ property: 'og:url', content: 'https://atschecker.site' });
+  }
+
+  onSimilarityScore(score: number) {
+    this.similarityScore.set(score);
+    this.isSummary.set(true);
   }
 }

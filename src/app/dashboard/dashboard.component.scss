@@ -1,0 +1,40 @@
+.header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  margin: 3rem 0 1rem 0;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  margin: 0 0 2rem 0;
+}
+
+h5 {
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  margin: 0 0 2rem 0;
+}
+
+app-cv-upload {
+  margin: 0 0 1rem 0;
+}
+
+::ng-deep app-cv-upload {
+  width: 100% !important;
+  max-width: 600px !important;
+  height: auto !important;
+}
+

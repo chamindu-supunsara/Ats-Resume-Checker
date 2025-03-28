@@ -1,0 +1,18 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 5rem;
+  height: 4rem;
+}
+
+.bold-text {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+p-divider {
+  height: 1px !important;
+  margin: 0.5rem 0 0 0 !important;
+}
