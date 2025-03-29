@@ -31,12 +31,12 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    // this.spinner.show('mainSpinner');
-    // document.body.style.overflow = 'hidden';
+    this.spinner.show('mainSpinner');
+    document.body.style.overflow = 'hidden';
 
-    // setTimeout(() => {
-    //   this.spinner.hide('mainSpinner');
-    //   document.body.style.overflow = 'auto';
-    // }, 5000);
+    setTimeout(() => {
+      this.spinner.hide('mainSpinner');
+      document.body.style.overflow = 'auto';
+    }, 5000);
   }
 }
