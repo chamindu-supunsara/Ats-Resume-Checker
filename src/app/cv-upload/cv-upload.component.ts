@@ -60,8 +60,9 @@ export class CvUploadComponent {
 
     if (!this.extractedText()) return;
 
-    document.body.style.overflow = 'hidden';
     this.spinner.show('analyzeSpinner');
+    document.body.style.overflow = 'hidden';
+    this.similarityScore.set(0);
 
     await tf.setBackend('webgl');
     const model = await this.modelPromise; // Use cached model
@@ -77,7 +78,6 @@ export class CvUploadComponent {
 
     const [cvVector, jdVector] = embeddings.arraySync();
     this.similarityScore.set(this.cosineSimilarity(cvVector, jdVector) * 100);
-    console.log(this.similarityScore());
 
     setTimeout(() => {
       this.spinner.hide('analyzeSpinner');
@@ -88,6 +88,9 @@ export class CvUploadComponent {
 
   extractTextFromPDF(file: File): Promise<string> {
     return new Promise((resolve) => {
+      this.spinner.show('extractSpinner');
+      document.body.style.overflow = 'hidden';
+
       const reader = new FileReader();
       reader.onload = async () => {
         const typedArray = new Uint8Array(reader.result as ArrayBuffer);
@@ -99,6 +102,11 @@ export class CvUploadComponent {
           const content = await page.getTextContent();
           text += content.items.map((item: any) => item.str).join(' ') + '\n';
         }
+
+        setTimeout(() => {
+          this.spinner.hide('extractSpinner');
+          document.body.style.overflow = 'auto';
+        }, 3000);
         resolve(text);
       };
       reader.readAsArrayBuffer(file);
@@ -107,11 +115,19 @@ export class CvUploadComponent {
 
   extractTextFromDOCX(file: File): Promise<string> {
     return new Promise((resolve) => {
+      this.spinner.show('extractSpinner');
+      document.body.style.overflow = 'hidden';
+
       const reader = new FileReader();
       reader.onload = async () => {
         const result = await mammoth.extractRawText({
           arrayBuffer: reader.result as ArrayBuffer,
         });
+
+        setTimeout(() => {
+          this.spinner.hide('extractSpinner');
+          document.body.style.overflow = 'auto';
+        }, 3000);
         resolve(result.value);
       };
       reader.readAsArrayBuffer(file);

@@ -1,11 +1,12 @@
 import { Component, computed, signal } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ButtonModule, DividerModule],
+  imports: [ButtonModule, DividerModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -61,9 +62,4 @@ export class HeaderComponent {
   }  
 
   buttonIcon = computed(() => (this.isDarkMode() ? 'pi pi-sun' : 'pi pi-moon'));
-
-  //Need to change feuature release
-  Reload() {
-    location.reload();
-  }
 }

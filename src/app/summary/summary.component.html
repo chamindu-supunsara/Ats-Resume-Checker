@@ -41,22 +41,20 @@
             <!-- Column 2: Progress Bars -->
             <div style="display: flex; flex-direction: column; gap: 1rem; width: 66%;">
                 <div>
-                    <p-progressbar [value]="90" />
+                    <p-progressbar [value]="progress1()" />
                 </div>
                 <div>
-                    <p-progressbar [value]="88" />
+                    <p-progressbar [value]="progress2()" />
                 </div>
                 <div>
-                    <p-progressbar [value]="97" />
+                    <p-progressbar [value]="progress3()" />
                 </div>
             </div>
         </div>
-    </p-panel>        
-    
-    
+    </p-panel>         
 </div>
 
-<p-panel header="Improvement Recommendations" [style]="{ width: '60rem', margin: '1rem 0 3rem 0' }">
+<p-panel header="Improvement Recommendations" [style]="{ width: '60rem', margin: '1rem 0 2rem 0' }">
     <p-panel header="Add a Skills Section" [style]="{ width: '58rem' }">
         <p class="m-0">
             Include a dedicated skills section to highlight your technical and soft skills.
@@ -70,4 +68,6 @@
     </p-panel>
 </p-panel>
 
-
+<div class="center-container">
+    <p-button label="Analyze Another Resume" icon="pi pi-refresh" [loading]="Loading()" (onClick)="load()" size="large" />
+</div>

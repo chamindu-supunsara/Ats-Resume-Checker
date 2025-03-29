@@ -12,3 +12,11 @@ h2 {
   font-weight: lighter;
   margin: 0 0 3rem 0;
 }
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-bottom: 3rem;
+}
