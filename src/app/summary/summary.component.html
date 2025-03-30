@@ -1,6 +1,6 @@
-<p-panel [style]="{ width: '60rem', margin: '3rem 0 0 0' }">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-left: 2rem; margin-right: 2rem;">
-        <div>
+<p-panel class="first-panel">
+    <div class="card1" style="display: flex; justify-content: space-between; align-items: center; margin-left: 2rem; margin-right: 2rem;">
+        <div class="card2">
             <h1>Resume Analysis Results</h1>
             <h2>Analyzed on {{ currentDate | date: 'longDate' }}</h2>
         </div>
@@ -8,8 +8,8 @@
     </div>
 </p-panel>
 
-<div style="display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem;">
-    <p-panel header="Key Findings" [style]="{ width: '25rem' }">
+<div class="second-panel" style="display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem;">
+    <p-panel class="thired-panel" header="Key Findings" [style]="{ width: '25rem' }">
         <div class="m-0">
             <div style="margin-bottom: 1rem;">
                 <i class="pi pi-times" style="color: var(--success-color); margin-right: 1rem;"></i> Strong keyword matching
@@ -23,7 +23,7 @@
         </div>
     </p-panel>    
 
-    <p-panel header="Format Analysis" [style]="{ width: '34rem' }">
+    <p-panel class="fourth-panel" header="Format Analysis" [style]="{ width: '34rem' }">
         <div class="m-0" style="display: flex; justify-content: space-between;">
             <!-- Column 1: Labels -->
             <div style="display: flex; flex-direction: column; gap: 1rem; width: 30%;">
@@ -54,7 +54,7 @@
     </p-panel>         
 </div>
 
-<p-panel header="Improvement Recommendations" [style]="{ width: '60rem', margin: '1rem 0 2rem 0' }">
+<p-panel class="fifth-panel" header="Improvement Recommendations" [style]="{ width: '60rem', margin: '1rem 0 2rem 0' }">
     <p-panel header="Add a Skills Section" [style]="{ width: '58rem' }">
         <p class="m-0">
             Include a dedicated skills section to highlight your technical and soft skills.

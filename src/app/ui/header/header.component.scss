@@ -41,3 +41,11 @@ p-divider {
 .pi-inout {
   animation: dimLightAnimation 3s ease-in-out infinite;
 }
+
+@media (max-width: 650px) {
+  .bold-text,
+  .supportbtn 
+  {
+    display: none;
+  }
+}

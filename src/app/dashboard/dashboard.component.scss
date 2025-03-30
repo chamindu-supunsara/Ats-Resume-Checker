@@ -16,6 +16,7 @@ h1 {
 
 h3 {
   font-size: 1.2rem;
+  text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 100;
   margin: 0 0 2rem 0;
@@ -38,3 +39,40 @@ app-cv-upload {
   height: auto !important;
 }
 
+.div-icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+h4 {
+  margin: 0 1rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 1200px) {
+  p-card,
+  p-divider {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .header-container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 0.5rem;
+  }
+
+  ::ng-deep app-summary {
+    transform: scale(0.9);
+  }
+}
+
+@media (max-width: 600px) {
+  .div-icon {
+    display: none;
+  }
+}

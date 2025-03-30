@@ -20,3 +20,34 @@ h2 {
   height: 100%;
   margin-bottom: 3rem;
 }
+
+.first-panel {
+  width: 60rem;
+  margin: 3rem 0 0 0;
+}
+
+@media (max-width: 900px) {
+  .card1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card2, p-knob, h1, h2 {
+    width: 100%;
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  .second-panel,
+  .thired-panel, 
+  .fourth-panel,
+  .fifth-panel {
+    display: none;
+  }
+  .center-container {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+}
